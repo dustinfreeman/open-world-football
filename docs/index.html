@@ -17,15 +17,16 @@
     height: 100dvh;
     overflow: hidden;
   }
-  .bg {
+  /* .field is sized/positioned by the script below to exactly overlay the
+     cover-fit background image, so players positioned in % of .field stay
+     glued to image content when the window is resized. */
+  .field {
     position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: center;
+    background: url("./assets/screenshots-riverwood-to-whiterun/20261119181917_1.jpg") center / 100% 100% no-repeat;
   }
-  /* one .player div per NPC: tune left / bottom / height / z-index here */
+  /* one .player div per NPC: tune left / bottom / height / z-index here.
+     left = horizontal center of the figure, bottom = bottom edge of the image,
+     both in % of the background image; height = figure height in % of image height. */
   .player {
     position: absolute;
     transform: translateX(-50%);
@@ -45,7 +46,7 @@
     white-space: nowrap;
     font-family: "Futura Condensed", Futura, "Century Gothic", "Arial Narrow", sans-serif;
     font-stretch: condensed;
-    font-size: 2.6vh;
+    font-size: 2.2vh;
     letter-spacing: 0.05em;
     color: #fff;
     text-shadow: 0 0 4px rgba(0,0,0,0.9), 1px 1px 2px #000, -1px -1px 2px #000;
@@ -61,137 +62,195 @@
     text-shadow: 1px 1px 2px #000;
   }
   .attribution a { color: rgba(255, 255, 255, 0.75); }
+  /* presentation layer cycle (body[data-layer]):
+     0 = everything (initial), 1 = base screenshot only, 2 = + offensive line, then back to 0 */
+  body[data-layer="1"] .player,
+  body[data-layer="1"] .attribution { visibility: hidden; }
+  body[data-layer="2"] .player.defense { visibility: hidden; }
 </style>
 </head>
 <body>
 <div class="stage">
-  <img class="bg" src="./assets/screenshots-riverwood-to-whiterun/20261119181917_1.jpg" alt="Riverwood to Whiterun" />
-  <div class="player" style="left: 18%; bottom: 26%; height: 38%; z-index: 2;">
-    <span class="npc-name">Alvor</span>
-    <img src="./assets/npcs/offensive-line-uesp/Alvor_NrSR.webp" alt="Alvor" />
+  <div class="field" id="field">
+    <div class="player defense" style="left: 38.5%; bottom: 25%; height: 46%; z-index: 3;"><!-- DE -->
+      <span class="npc-name">Sven</span>
+      <img src="./assets/npcs/defensive-line-uesp/Sven_NrSR.webp" alt="Sven" />
+    </div>
+    <div class="player defense" style="left: 45.5%; bottom: 25%; height: 46%; z-index: 3;"><!-- DT -->
+      <span class="npc-name">Belethor</span>
+      <img src="./assets/npcs/defensive-line-uesp/Belethor_NrSR.webp" alt="Belethor" />
+    </div>
+    <div class="player defense" style="left: 52.5%; bottom: 25%; height: 46%; z-index: 3;"><!-- NT -->
+      <span class="npc-name">Sigurd</span>
+      <img src="./assets/npcs/defensive-line-uesp/Sigurd_NrSR.webp" alt="Sigurd" />
+    </div>
+    <div class="player defense" style="left: 59.5%; bottom: 25%; height: 46%; z-index: 3;"><!-- DT -->
+      <span class="npc-name">Jervar</span>
+      <img src="./assets/npcs/defensive-line-uesp/Jervar_NrSR.webp" alt="Jervar" />
+    </div>
+    <div class="player defense" style="left: 66.5%; bottom: 25%; height: 46%; z-index: 3;"><!-- DE -->
+      <span class="npc-name">Alvor</span>
+      <img src="./assets/npcs/defensive-line-uesp/Alvor_NrSR.webp" alt="Alvor" />
+    </div>
+    <div class="player defense" style="left: 42.0%; bottom: 35%; height: 41%; z-index: 2;"><!-- LB -->
+      <span class="npc-name">Scouts-Many-Marshes</span>
+      <img src="./assets/npcs/defensive-line-uesp/ScoutsManyMarshes_NrSR.webp" alt="Scouts-Many-Marshes" />
+    </div>
+    <div class="player defense" style="left: 52.5%; bottom: 35%; height: 41%; z-index: 2;"><!-- LB -->
+      <span class="npc-name">Nazeem</span>
+      <img src="./assets/npcs/defensive-line-uesp/Nazeem_NrSR.webp" alt="Nazeem" />
+    </div>
+    <div class="player defense" style="left: 63.0%; bottom: 35%; height: 41%; z-index: 2;"><!-- LB -->
+      <span class="npc-name">Suvaris Atheron</span>
+      <img src="./assets/npcs/defensive-line-uesp/SuvarisAtheron_NrSR.webp" alt="Suvaris Atheron" />
+    </div>
+    <div class="player defense" style="left: 14.0%; bottom: 28%; height: 42%; z-index: 2;"><!-- CB -->
+      <span class="npc-name">Niranye</span>
+      <img src="./assets/npcs/defensive-line-uesp/Niranye_NrSR.webp" alt="Niranye" />
+    </div>
+    <div class="player defense" style="left: 88.0%; bottom: 28%; height: 42%; z-index: 2;"><!-- CB -->
+      <span class="npc-name">Delphine</span>
+      <img src="./assets/npcs/defensive-line-uesp/Delphine_NrSR.webp" alt="Delphine" />
+    </div>
+    <div class="player defense" style="left: 76.0%; bottom: 33%; height: 39%; z-index: 1;"><!-- S -->
+      <span class="npc-name">Mikael</span>
+      <img src="./assets/npcs/defensive-line-uesp/Mikael_NrSR.webp" alt="Mikael" />
+    </div>
+    <div class="player offense" style="left: 22.0%; bottom: 0%; height: 21.5%; z-index: 5;"><!-- LT (placeholder name - rename freely) -->
+      <span class="npc-name">Bjorni</span>
+      <img src="./assets/npcs/offensive-line/Skins defense 1 - freckled bare back.png" alt="Bjorni" />
+    </div>
+    <div class="player offense" style="left: 36.0%; bottom: 0%; height: 27.5%; z-index: 5;"><!-- LG (placeholder name - rename freely) -->
+      <span class="npc-name">Kjeld</span>
+      <img src="./assets/npcs/offensive-line/Skins defense 2 - bare back by the river.png" alt="Kjeld" />
+    </div>
+    <div class="player offense" style="left: 50.0%; bottom: 0%; height: 22.0%; z-index: 5;"><!-- C (placeholder name - rename freely) -->
+      <span class="npc-name">Halkaar</span>
+      <img src="./assets/npcs/offensive-line/Skins defense 3 - vegvisir tattoo back.png" alt="Halkaar" />
+    </div>
+    <div class="player offense" style="left: 64.0%; bottom: 0%; height: 34.0%; z-index: 5;"><!-- RG (placeholder name - rename freely) -->
+      <span class="npc-name">Stenvar</span>
+      <img src="./assets/npcs/offensive-line/Skins defense 4 - eagle tattoo back (Whiterun).png" alt="Stenvar" />
+    </div>
+    <div class="player offense" style="left: 78.0%; bottom: 0%; height: 30.0%; z-index: 5;"><!-- RT (placeholder name - rename freely) -->
+      <span class="npc-name">Oddmir</span>
+      <img src="./assets/npcs/offensive-line/Skins defense 5 - chained sigil tattoo back.png" alt="Oddmir" />
+    </div>
   </div>
-  <div class="player" style="left: 29%; bottom: 27%; height: 39%; z-index: 2;">
-    <span class="npc-name">Sven</span>
-    <img src="./assets/npcs/offensive-line-uesp/Sven_NrSR.webp" alt="Sven" />
-  </div>
-  <div class="player" style="left: 40%; bottom: 28%; height: 40%; z-index: 2;">
-    <span class="npc-name">Sigurd</span>
-    <img src="./assets/npcs/offensive-line-uesp/Sigurd_NrSR.webp" alt="Sigurd" />
-  </div>
-  <div class="player" style="left: 51%; bottom: 27%; height: 40%; z-index: 2;">
-    <span class="npc-name">Jervar</span>
-    <img src="./assets/npcs/offensive-line-uesp/Jervar_NrSR.webp" alt="Jervar" />
-  </div>
-  <div class="player" style="left: 62%; bottom: 27%; height: 39%; z-index: 2;">
-    <span class="npc-name">Belethor</span>
-    <img src="./assets/npcs/offensive-line-uesp/Belethor_NrSR.webp" alt="Belethor" />
-  </div>
-  <div class="player" style="left: 73%; bottom: 26%; height: 39%; z-index: 2;">
-    <span class="npc-name">Scouts-Many-Marshes</span>
-    <img src="./assets/npcs/offensive-line-uesp/ScoutsManyMarshes_NrSR.webp" alt="Scouts-Many-Marshes" />
-  </div>
-  <div class="player" style="left: 87%; bottom: 28%; height: 37%; z-index: 2;">
-    <span class="npc-name">Nazeem</span>
-    <img src="./assets/npcs/offensive-line-uesp/Nazeem_NrSR.webp" alt="Nazeem" />
-  </div>
-  <div class="player" style="left: 27%; bottom: 7%; height: 52%; z-index: 3;">
-    <span class="npc-name">Delphine</span>
-    <img src="./assets/npcs/offensive-line-uesp/Delphine_NrSR.webp" alt="Delphine" />
-  </div>
-  <div class="player" style="left: 44%; bottom: 10%; height: 50%; z-index: 3;">
-    <span class="npc-name">Mikael</span>
-    <img src="./assets/npcs/offensive-line-uesp/Mikael_NrSR.webp" alt="Mikael" />
-  </div>
-  <div class="player" style="left: 63%; bottom: 9%; height: 50%; z-index: 3;">
-    <span class="npc-name">Suvaris Atheron</span>
-    <img src="./assets/npcs/offensive-line-uesp/SuvarisAtheron_NrSR.webp" alt="Suvaris Atheron" />
-  </div>
-  <div class="player" style="left: 84%; bottom: 8%; height: 51%; z-index: 3;">
-    <span class="npc-name">Niranye</span>
-    <img src="./assets/npcs/offensive-line-uesp/Niranye_NrSR.webp" alt="Niranye" />
-  </div>
-  <div class="attribution">NPC images from <a href="https://uesp.net">UESP</a> &middot; The Elder Scrolls V: Skyrim &copy; Bethesda Softworks</div>
+  <div class="attribution">NPC images from <a href="https://uesp.net">UESP</a> &middot; offensive line composited from Nexus Mods community screenshots &middot; The Elder Scrolls V: Skyrim &copy; Bethesda Softworks</div>
 </div>
 
+<script>
+  // natural pixel size of the background screenshot
+  const BG_W = 1920, BG_H = 1080;
+  // replicate object-fit: cover for the .field container
+  function layoutField() {
+    const s = Math.max(window.innerWidth / BG_W, window.innerHeight / BG_H);
+    const w = BG_W * s, h = BG_H * s;
+    const f = document.getElementById('field');
+    f.style.width = w + 'px';
+    f.style.height = h + 'px';
+    f.style.left = (window.innerWidth - w) / 2 + 'px';
+    f.style.top = (window.innerHeight - h) / 2 + 'px';
+  }
+  window.addEventListener('resize', layoutField);
+  layoutField();
+
+  // presentation layer cycle: 0 = everything (initial load), 1 = base screenshot
+  // only, 2 = + offensive line, then back to 0. Advance with click or any key.
+  let layerState = 0;
+  document.body.dataset.layer = layerState;
+  function advanceLayer() {
+    layerState = (layerState + 1) % 3;
+    document.body.dataset.layer = layerState;
+  }
+  window.addEventListener('mousedown', advanceLayer);
+  window.addEventListener('keydown', advanceLayer);
+</script>
+
 <!--
-  Spare NPC renders (transparent .webp, in ./assets/npcs/offensive-line-uesp/) - swap into any <img> src to taste.
+  Spare defense renders (transparent .webp, in ./assets/npcs/defensive-line-uesp/) - swap into any <img> src to taste.
   Flags in parentheses: armor / weapons / child / pose notes.
 
-  Acolyte Jenssen: ./assets/npcs/offensive-line-uesp/AcolyteJenssen_NrSR.webp
-  Adrianne Avenicci: ./assets/npcs/offensive-line-uesp/AdrianneAvenicci_NrSR.webp
-  Ahkari (Khajiit, dagger): ./assets/npcs/offensive-line-uesp/Ahkari_NrSR.webp
-  Ahlam: ./assets/npcs/offensive-line-uesp/Ahlam_NrSR.webp
-  Amren (light armor): ./assets/npcs/offensive-line-uesp/Amren_NrSR.webp
-  Andurs: ./assets/npcs/offensive-line-uesp/Andurs_NrSR.webp
-  Anoriath (Bosmer, dagger): ./assets/npcs/offensive-line-uesp/Anoriath_NrSR.webp
-  Arcadia: ./assets/npcs/offensive-line-uesp/Arcadia_NrSR.webp
-  Avulstein Gray-Mane (armor): ./assets/npcs/offensive-line-uesp/AvulsteinGray-Mane_NrSR.webp
-  Balgruuf the Greater (sheathed sword): ./assets/npcs/offensive-line-uesp/BalgruuftheGreater_NrSR.webp
-  Bergritte Battle-Born: ./assets/npcs/offensive-line-uesp/BergritteBattle-Born_NrSR.webp
-  Bjorlam (dagger): ./assets/npcs/offensive-line-uesp/Bjorlam_NrSR.webp
-  Braith (child): ./assets/npcs/offensive-line-uesp/Braith_NrSR.webp
-  Brenuin: ./assets/npcs/offensive-line-uesp/Brenuin_NrSR.webp
-  Brill: ./assets/npcs/offensive-line-uesp/Brill_NrSR.webp
-  Camilla Valerius: ./assets/npcs/offensive-line-uesp/CamillaValerius_NrSR.webp
-  Carlotta Valentia: ./assets/npcs/offensive-line-uesp/CarlottaValentia_NrSR.webp
-  Dagny (child): ./assets/npcs/offensive-line-uesp/Dagny_NrSR.webp
-  Danica Pure-Spring: ./assets/npcs/offensive-line-uesp/Danica_Pure-Spring_NrSR.webp
-  Dorthe (child): ./assets/npcs/offensive-line-uesp/Dorthe_NrSR.webp
-  Elrindir (Bosmer, dagger): ./assets/npcs/offensive-line-uesp/Elrindir_NrSR.webp
-  Embry (dagger): ./assets/npcs/offensive-line-uesp/Embry_NrSR.webp
-  Eorlund Gray-Mane (bare chest, apron): ./assets/npcs/offensive-line-uesp/EorlundGray-Mane_NrSR.webp
-  Faendal (Bosmer, bow): ./assets/npcs/offensive-line-uesp/Faendal_NrSR.webp
-  Farengar Secret-Fire: ./assets/npcs/offensive-line-uesp/Farengar_NrSR.webp
-  Farkas (armor + sword): ./assets/npcs/offensive-line-uesp/Farkas_NrSR.webp
-  Fianna: ./assets/npcs/offensive-line-uesp/Fianna_NrSR.webp
-  Fralia Gray-Mane: ./assets/npcs/offensive-line-uesp/FraliaGray-Mane_NrSR.webp
-  Frodnar: ./assets/npcs/offensive-line-uesp/Frodnar_NrSR.webp
-  Frothar (child): ./assets/npcs/offensive-line-uesp/Frothar_NrSR.webp
-  Gerda: ./assets/npcs/offensive-line-uesp/Gerda_NrSR.webp
-  Gerdur: ./assets/npcs/offensive-line-uesp/Gerdur_NrSR.webp
-  Hadvar (armor): ./assets/npcs/offensive-line-uesp/Hadvar_NrSR.webp
-  Heimskr: ./assets/npcs/offensive-line-uesp/Heimskr_NrSR.webp
-  Hilde: ./assets/npcs/offensive-line-uesp/Hilde_NrSR.webp
-  Hod (dagger): ./assets/npcs/offensive-line-uesp/Hod_NrSR.webp
-  Hrongar (armor + swords): ./assets/npcs/offensive-line-uesp/Hrongar_NrSR.webp
-  Hulda: ./assets/npcs/offensive-line-uesp/Hulda_NrSR.webp
-  Idolaf Battle-Born (armored tunic): ./assets/npcs/offensive-line-uesp/IdolafBattle-Born_NrSR.webp
-  Irileth (Dunmer, armor + sword): ./assets/npcs/offensive-line-uesp/Irileth_NrSR.webp
-  Jenassa (Dunmer, armor): ./assets/npcs/offensive-line-uesp/Jenassa_NrSR.webp
-  Jon Battle-Born (partial armor): ./assets/npcs/offensive-line-uesp/JonBattle-Born_NrSR.webp
-  Lars Battle-Born (child): ./assets/npcs/offensive-line-uesp/LarsBattle-Born_NrSR.webp
-  Legate Quentin Cipius (full armor): ./assets/npcs/offensive-line-uesp/LegateQuentinCipius_NrSR.webp
-  Lillith Maiden-Loom: ./assets/npcs/offensive-line-uesp/LillithMaiden-Loom_NrSR.webp
-  Lucan Valerius (dagger): ./assets/npcs/offensive-line-uesp/LucanValerius_NrSR.webp
-  Lucia (child): ./assets/npcs/offensive-line-uesp/Lucia_NrSR.webp
-  Lydia (armor + shield): ./assets/npcs/offensive-line-uesp/Lydia_NrSR.webp
-  Malborn (Bosmer): ./assets/npcs/offensive-line-uesp/Malborn_NrSR.webp
-  Mallus Maccius: ./assets/npcs/offensive-line-uesp/MallusMaccius_NrSR.webp
-  Maurice Jondrelle: ./assets/npcs/offensive-line-uesp/MauriceJondrelle_NrSR.webp
-  Mila Valentia (child): ./assets/npcs/offensive-line-uesp/MilaValentia_NrSR.webp
-  Nelkir (child): ./assets/npcs/offensive-line-uesp/Nelkir_NrSR.webp
-  Njada Stonearm (armor): ./assets/npcs/offensive-line-uesp/NjadaStonearm_NrSR.webp
-  Olava the Feeble: ./assets/npcs/offensive-line-uesp/OlavatheFeeble_NrSR.webp
-  Olfina Gray-Mane: ./assets/npcs/offensive-line-uesp/OlfinaGray-Mane_NrSR.webp
-  Olfrid Battle-Born (dagger): ./assets/npcs/offensive-line-uesp/OlfridBattle-Born_NrSR.webp
-  Orgnar (dagger): ./assets/npcs/offensive-line-uesp/Orgnar_NrSR.webp
-  Proventus Avenicci: ./assets/npcs/offensive-line-uesp/ProventusAvenicci_NrSR.webp
-  Ralof (armor): ./assets/npcs/offensive-line-uesp/Ralof_NrSR.webp
-  Ri'saad (Khajiit, sheathed sword): ./assets/npcs/offensive-line-uesp/Risaad_NrSR.webp
-  Ria (armor): ./assets/npcs/offensive-line-uesp/Ria_NrSR.webp
-  Saadia (Redguard): ./assets/npcs/offensive-line-uesp/Saadia_NrSR.webp
-  Saffir: ./assets/npcs/offensive-line-uesp/Saffir_NrSR.webp
-  Severio Pelagia: ./assets/npcs/offensive-line-uesp/SeverioPelagia_NrSR.webp
-  Sigrid: ./assets/npcs/offensive-line-uesp/Sigrid_NrSR.webp
-  Sinmir (armored tunic): ./assets/npcs/offensive-line-uesp/Sinmir_NrSR.webp
-  Skulvar Sable-Hilt (dagger): ./assets/npcs/offensive-line-uesp/SkulvarSable-Hilt_NrSR.webp
-  Tilma the Haggard (dagger): ./assets/npcs/offensive-line-uesp/TilmatheHaggard_NrSR.webp
-  Torvar (armor): ./assets/npcs/offensive-line-uesp/Torvar_NrSR.webp
-  Ulfberth War-Bear (armor): ./assets/npcs/offensive-line-uesp/UlfberthWar-Bear_NrSR.webp
-  Uthgerd the Unbroken (armor + greatsword): ./assets/npcs/offensive-line-uesp/Uthgerd_NrSR.webp
-  Vignar Gray-Mane (seated): ./assets/npcs/offensive-line-uesp/VignarGrey-Mane_NrSR.webp
-  Vilkas (armor): ./assets/npcs/offensive-line-uesp/Vilkas_NrSR.webp
-  Ysolda: ./assets/npcs/offensive-line-uesp/Ysolda_NrSR.webp
+  Acolyte Jenssen: ./assets/npcs/defensive-line-uesp/AcolyteJenssen_NrSR.webp
+  Adrianne Avenicci: ./assets/npcs/defensive-line-uesp/AdrianneAvenicci_NrSR.webp
+  Ahkari (Khajiit, dagger): ./assets/npcs/defensive-line-uesp/Ahkari_NrSR.webp
+  Ahlam: ./assets/npcs/defensive-line-uesp/Ahlam_NrSR.webp
+  Amren (light armor): ./assets/npcs/defensive-line-uesp/Amren_NrSR.webp
+  Andurs: ./assets/npcs/defensive-line-uesp/Andurs_NrSR.webp
+  Anoriath (Bosmer, dagger): ./assets/npcs/defensive-line-uesp/Anoriath_NrSR.webp
+  Arcadia: ./assets/npcs/defensive-line-uesp/Arcadia_NrSR.webp
+  Avulstein Gray-Mane (armor): ./assets/npcs/defensive-line-uesp/AvulsteinGray-Mane_NrSR.webp
+  Balgruuf the Greater (sheathed sword): ./assets/npcs/defensive-line-uesp/BalgruuftheGreater_NrSR.webp
+  Bergritte Battle-Born: ./assets/npcs/defensive-line-uesp/BergritteBattle-Born_NrSR.webp
+  Bjorlam (dagger): ./assets/npcs/defensive-line-uesp/Bjorlam_NrSR.webp
+  Braith (child): ./assets/npcs/defensive-line-uesp/Braith_NrSR.webp
+  Brenuin: ./assets/npcs/defensive-line-uesp/Brenuin_NrSR.webp
+  Brill: ./assets/npcs/defensive-line-uesp/Brill_NrSR.webp
+  Camilla Valerius: ./assets/npcs/defensive-line-uesp/CamillaValerius_NrSR.webp
+  Carlotta Valentia: ./assets/npcs/defensive-line-uesp/CarlottaValentia_NrSR.webp
+  Dagny (child): ./assets/npcs/defensive-line-uesp/Dagny_NrSR.webp
+  Danica Pure-Spring: ./assets/npcs/defensive-line-uesp/Danica_Pure-Spring_NrSR.webp
+  Dorthe (child): ./assets/npcs/defensive-line-uesp/Dorthe_NrSR.webp
+  Elrindir (Bosmer, dagger): ./assets/npcs/defensive-line-uesp/Elrindir_NrSR.webp
+  Embry (dagger): ./assets/npcs/defensive-line-uesp/Embry_NrSR.webp
+  Eorlund Gray-Mane (bare chest, apron): ./assets/npcs/defensive-line-uesp/EorlundGray-Mane_NrSR.webp
+  Faendal (Bosmer, bow): ./assets/npcs/defensive-line-uesp/Faendal_NrSR.webp
+  Farengar Secret-Fire: ./assets/npcs/defensive-line-uesp/Farengar_NrSR.webp
+  Farkas (armor + sword): ./assets/npcs/defensive-line-uesp/Farkas_NrSR.webp
+  Fianna: ./assets/npcs/defensive-line-uesp/Fianna_NrSR.webp
+  Fralia Gray-Mane: ./assets/npcs/defensive-line-uesp/FraliaGray-Mane_NrSR.webp
+  Frodnar: ./assets/npcs/defensive-line-uesp/Frodnar_NrSR.webp
+  Frothar (child): ./assets/npcs/defensive-line-uesp/Frothar_NrSR.webp
+  Gerda: ./assets/npcs/defensive-line-uesp/Gerda_NrSR.webp
+  Gerdur: ./assets/npcs/defensive-line-uesp/Gerdur_NrSR.webp
+  Hadvar (armor): ./assets/npcs/defensive-line-uesp/Hadvar_NrSR.webp
+  Heimskr: ./assets/npcs/defensive-line-uesp/Heimskr_NrSR.webp
+  Hilde: ./assets/npcs/defensive-line-uesp/Hilde_NrSR.webp
+  Hod (dagger): ./assets/npcs/defensive-line-uesp/Hod_NrSR.webp
+  Hrongar (armor + swords): ./assets/npcs/defensive-line-uesp/Hrongar_NrSR.webp
+  Hulda: ./assets/npcs/defensive-line-uesp/Hulda_NrSR.webp
+  Idolaf Battle-Born (armored tunic): ./assets/npcs/defensive-line-uesp/IdolafBattle-Born_NrSR.webp
+  Irileth (Dunmer, armor + sword): ./assets/npcs/defensive-line-uesp/Irileth_NrSR.webp
+  Jenassa (Dunmer, armor): ./assets/npcs/defensive-line-uesp/Jenassa_NrSR.webp
+  Jon Battle-Born (partial armor): ./assets/npcs/defensive-line-uesp/JonBattle-Born_NrSR.webp
+  Lars Battle-Born (child): ./assets/npcs/defensive-line-uesp/LarsBattle-Born_NrSR.webp
+  Legate Quentin Cipius (full armor): ./assets/npcs/defensive-line-uesp/LegateQuentinCipius_NrSR.webp
+  Lillith Maiden-Loom: ./assets/npcs/defensive-line-uesp/LillithMaiden-Loom_NrSR.webp
+  Lucan Valerius (dagger): ./assets/npcs/defensive-line-uesp/LucanValerius_NrSR.webp
+  Lucia (child): ./assets/npcs/defensive-line-uesp/Lucia_NrSR.webp
+  Lydia (armor + shield): ./assets/npcs/defensive-line-uesp/Lydia_NrSR.webp
+  Malborn (Bosmer): ./assets/npcs/defensive-line-uesp/Malborn_NrSR.webp
+  Mallus Maccius: ./assets/npcs/defensive-line-uesp/MallusMaccius_NrSR.webp
+  Maurice Jondrelle: ./assets/npcs/defensive-line-uesp/MauriceJondrelle_NrSR.webp
+  Mila Valentia (child): ./assets/npcs/defensive-line-uesp/MilaValentia_NrSR.webp
+  Nelkir (child): ./assets/npcs/defensive-line-uesp/Nelkir_NrSR.webp
+  Njada Stonearm (armor): ./assets/npcs/defensive-line-uesp/NjadaStonearm_NrSR.webp
+  Olava the Feeble: ./assets/npcs/defensive-line-uesp/OlavatheFeeble_NrSR.webp
+  Olfina Gray-Mane: ./assets/npcs/defensive-line-uesp/OlfinaGray-Mane_NrSR.webp
+  Olfrid Battle-Born (dagger): ./assets/npcs/defensive-line-uesp/OlfridBattle-Born_NrSR.webp
+  Orgnar (dagger): ./assets/npcs/defensive-line-uesp/Orgnar_NrSR.webp
+  Proventus Avenicci: ./assets/npcs/defensive-line-uesp/ProventusAvenicci_NrSR.webp
+  Ralof (armor): ./assets/npcs/defensive-line-uesp/Ralof_NrSR.webp
+  Ri'saad (Khajiit, sheathed sword): ./assets/npcs/defensive-line-uesp/Risaad_NrSR.webp
+  Ria (armor): ./assets/npcs/defensive-line-uesp/Ria_NrSR.webp
+  Saadia (Redguard): ./assets/npcs/defensive-line-uesp/Saadia_NrSR.webp
+  Saffir: ./assets/npcs/defensive-line-uesp/Saffir_NrSR.webp
+  Severio Pelagia: ./assets/npcs/defensive-line-uesp/SeverioPelagia_NrSR.webp
+  Sigrid: ./assets/npcs/defensive-line-uesp/Sigrid_NrSR.webp
+  Sinmir (armored tunic): ./assets/npcs/defensive-line-uesp/Sinmir_NrSR.webp
+  Skulvar Sable-Hilt (dagger): ./assets/npcs/defensive-line-uesp/SkulvarSable-Hilt_NrSR.webp
+  Tilma the Haggard (dagger): ./assets/npcs/defensive-line-uesp/TilmatheHaggard_NrSR.webp
+  Torvar (armor): ./assets/npcs/defensive-line-uesp/Torvar_NrSR.webp
+  Ulfberth War-Bear (armor): ./assets/npcs/defensive-line-uesp/UlfberthWar-Bear_NrSR.webp
+  Uthgerd the Unbroken (armor + greatsword): ./assets/npcs/defensive-line-uesp/Uthgerd_NrSR.webp
+  Vignar Gray-Mane (seated): ./assets/npcs/defensive-line-uesp/VignarGrey-Mane_NrSR.webp
+  Vilkas (armor): ./assets/npcs/defensive-line-uesp/Vilkas_NrSR.webp
+  Ysolda: ./assets/npcs/defensive-line-uesp/Ysolda_NrSR.webp
+
+  Spare offensive-line backs (in ./assets/npcs/offensive-line/):
+  (spare back): ./assets/npcs/offensive-line/Skins defense 6 - full back in smallclothes.png
+  (spare back): ./assets/npcs/offensive-line/Skins defense 7 - tattooed Nord back (bonus, low-res).png
 -->
 </body>
 </html>
