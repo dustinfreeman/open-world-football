@@ -24,9 +24,11 @@
     position: absolute;
     background: url("./assets/screenshots-riverwood-to-whiterun/20261119181917_1.jpg") center / 100% 100% no-repeat;
   }
-  /* one .player div per NPC: tune left / bottom / height / z-index here.
+  /* one .player div per NPC: tune left / bottom / height here.
      left = horizontal center of the figure, bottom = bottom edge of the image,
-     both in % of the background image; height = figure height in % of image height. */
+     both in % of the background image; height = figure height in % of image height.
+     No z-index: overlap is controlled by document order. Players are listed
+     back to front, so a div lower in the file draws in front of earlier ones. */
   .player {
     position: absolute;
     transform: translateX(-50%);
@@ -55,84 +57,88 @@
     position: absolute;
     right: 1vw;
     bottom: 1vh;
-    z-index: 10;
     font-family: Futura, "Century Gothic", sans-serif;
     font-size: 1.5vh;
     color: rgba(255, 255, 255, 0.55);
     text-shadow: 1px 1px 2px #000;
   }
   .attribution a { color: rgba(255, 255, 255, 0.75); }
-  /* presentation layer cycle (body[data-layer]):
-     0 = everything (initial), 1 = base screenshot only, 2 = + offensive line, then back to 0 */
-  body[data-layer="1"] .player,
-  body[data-layer="1"] .attribution { visibility: hidden; }
-  body[data-layer="2"] .player.offense { visibility: hidden; }
+  /* Presentation layers: everything starts hidden, and a layer is shown only
+     while its show-* class is on the .stage element. The click/key sequence
+     that toggles those classes is the `steps` list in the script below. */
+  .player,
+  .attribution { visibility: hidden; }
+  .stage.show-offense .player.offense,
+  .stage.show-defense .player.defense { visibility: visible; }
+  .stage.show-attribution .attribution { visibility: visible; }
 </style>
 </head>
 <body>
 <div class="stage">
   <div class="field" id="field">
-    <div class="player defense" style="left: 38.5%; bottom: 25%; height: 46%; z-index: 3;"><!-- DE -->
-      <span class="npc-name">Sven</span>
-      <img src="./assets/npcs/defensive-line-uesp/Sven_NrSR.webp" alt="Sven" />
-    </div>
-    <div class="player defense" style="left: 45.5%; bottom: 25%; height: 46%; z-index: 3;"><!-- DT -->
-      <span class="npc-name">Belethor</span>
-      <img src="./assets/npcs/defensive-line-uesp/Belethor_NrSR.webp" alt="Belethor" />
-    </div>
-    <div class="player defense" style="left: 52.5%; bottom: 25%; height: 46%; z-index: 3;"><!-- NT -->
-      <span class="npc-name">Sigurd</span>
-      <img src="./assets/npcs/defensive-line-uesp/Sigurd_NrSR.webp" alt="Sigurd" />
-    </div>
-    <div class="player defense" style="left: 59.5%; bottom: 25%; height: 46%; z-index: 3;"><!-- DT -->
-      <span class="npc-name">Jervar</span>
-      <img src="./assets/npcs/defensive-line-uesp/Jervar_NrSR.webp" alt="Jervar" />
-    </div>
-    <div class="player defense" style="left: 66.5%; bottom: 25%; height: 46%; z-index: 3;"><!-- DE -->
-      <span class="npc-name">Alvor</span>
-      <img src="./assets/npcs/defensive-line-uesp/Alvor_NrSR.webp" alt="Alvor" />
-    </div>
-    <div class="player defense" style="left: 42.0%; bottom: 35%; height: 41%; z-index: 2;"><!-- LB -->
-      <span class="npc-name">Scouts-Many-Marshes</span>
-      <img src="./assets/npcs/defensive-line-uesp/ScoutsManyMarshes_NrSR.webp" alt="Scouts-Many-Marshes" />
-    </div>
-    <div class="player defense" style="left: 52.5%; bottom: 35%; height: 41%; z-index: 2;"><!-- LB -->
-      <span class="npc-name">Nazeem</span>
-      <img src="./assets/npcs/defensive-line-uesp/Nazeem_NrSR.webp" alt="Nazeem" />
-    </div>
-    <div class="player defense" style="left: 63.0%; bottom: 35%; height: 41%; z-index: 2;"><!-- LB -->
-      <span class="npc-name">Suvaris Atheron</span>
-      <img src="./assets/npcs/defensive-line-uesp/SuvarisAtheron_NrSR.webp" alt="Suvaris Atheron" />
-    </div>
-    <div class="player defense" style="left: 14.0%; bottom: 28%; height: 42%; z-index: 2;"><!-- CB -->
+    <!-- players are listed back to front: safeties/cornerbacks first,
+         offensive line (closest to camera) last -->
+    <!-- <div class="player defense" style="left: 76.0%; bottom: 33%; height: 39%;">
+      <span class="npc-name">Mikael</span>
+      <img src="./assets/npcs/defensive-line-uesp/Mikael_NrSR.webp" alt="Mikael" />
+    </div> --><!-- S -->
+    <div class="player defense" style="left: 14.0%; bottom: 28%; height: 42%;"><!-- CB -->
       <span class="npc-name">Niranye</span>
       <img src="./assets/npcs/defensive-line-uesp/Niranye_NrSR.webp" alt="Niranye" />
     </div>
-    <!-- <div class="player defense" style="left: 88.0%; bottom: 28%; height: 42%; z-index: 2;">
+    <!-- <div class="player defense" style="left: 88.0%; bottom: 28%; height: 42%;">
       <span class="npc-name">Delphine</span>
       <img src="./assets/npcs/defensive-line-uesp/Delphine_NrSR.webp" alt="Delphine" />
-    </div> -->
-    <!-- <div class="player defense" style="left: 76.0%; bottom: 33%; height: 39%; z-index: 1;">
-      <span class="npc-name">Mikael</span>
-      <img src="./assets/npcs/defensive-line-uesp/Mikael_NrSR.webp" alt="Mikael" />
-    </div> -->
-    <div class="player offense" style="left: 22.0%; bottom: 0%; height: 21.5%; z-index: 5;"><!-- LT (placeholder name - rename freely) -->
+    </div> --><!-- CB -->
+    <div class="player defense" style="left: 42.0%; bottom: 35%; height: 41%;"><!-- LB -->
+      <span class="npc-name">Scouts-Many-Marshes</span>
+      <img src="./assets/npcs/defensive-line-uesp/ScoutsManyMarshes_NrSR.webp" alt="Scouts-Many-Marshes" />
+    </div>
+    <div class="player defense" style="left: 52.5%; bottom: 35%; height: 41%;"><!-- LB -->
+      <span class="npc-name">Nazeem</span>
+      <img src="./assets/npcs/defensive-line-uesp/Nazeem_NrSR.webp" alt="Nazeem" />
+    </div>
+    <div class="player defense" style="left: 63.0%; bottom: 35%; height: 41%;"><!-- LB -->
+      <span class="npc-name">Suvaris Atheron</span>
+      <img src="./assets/npcs/defensive-line-uesp/SuvarisAtheron_NrSR.webp" alt="Suvaris Atheron" />
+    </div>
+    <div class="player defense" style="left: 38.5%; bottom: 25%; height: 46%;"><!-- DE -->
+      <span class="npc-name">Sven</span>
+      <img src="./assets/npcs/defensive-line-uesp/Sven_NrSR.webp" alt="Sven" />
+    </div>
+    <div class="player defense" style="left: 45.5%; bottom: 25%; height: 46%;"><!-- DT -->
+      <span class="npc-name">Belethor</span>
+      <img src="./assets/npcs/defensive-line-uesp/Belethor_NrSR.webp" alt="Belethor" />
+    </div>
+    <div class="player defense" style="left: 52.5%; bottom: 25%; height: 46%;"><!-- NT -->
+      <span class="npc-name">Sigurd</span>
+      <img src="./assets/npcs/defensive-line-uesp/Sigurd_NrSR.webp" alt="Sigurd" />
+    </div>
+    <div class="player defense" style="left: 59.5%; bottom: 25%; height: 46%;"><!-- DT -->
+      <span class="npc-name">Jervar</span>
+      <img src="./assets/npcs/defensive-line-uesp/Jervar_NrSR.webp" alt="Jervar" />
+    </div>
+    <div class="player defense" style="left: 66.5%; bottom: 25%; height: 46%;"><!-- DE -->
+      <span class="npc-name">Alvor</span>
+      <img src="./assets/npcs/defensive-line-uesp/Alvor_NrSR.webp" alt="Alvor" />
+    </div>
+    <div class="player offense" style="left: 22.0%; bottom: 0%; height: 21.5%;"><!-- LT (placeholder name - rename freely) -->
       <span class="npc-name">Bjorni</span>
       <img src="./assets/npcs/offensive-line/Skins defense 1 - freckled bare back.png" alt="Bjorni" />
     </div>
-    <div class="player offense" style="left: 36.0%; bottom: 0%; height: 27.5%; z-index: 5;"><!-- LG (placeholder name - rename freely) -->
+    <div class="player offense" style="left: 36.0%; bottom: 0%; height: 27.5%;"><!-- LG (placeholder name - rename freely) -->
       <span class="npc-name">Kjeld</span>
       <img src="./assets/npcs/offensive-line/Skins defense 2 - bare back by the river.png" alt="Kjeld" />
     </div>
-    <div class="player offense" style="left: 50.0%; bottom: 0%; height: 22.0%; z-index: 5;"><!-- C (placeholder name - rename freely) -->
+    <div class="player offense" style="left: 50.0%; bottom: 0%; height: 22.0%;"><!-- C (placeholder name - rename freely) -->
       <span class="npc-name">Halkaar</span>
       <img src="./assets/npcs/offensive-line/Skins defense 3 - vegvisir tattoo back.png" alt="Halkaar" />
     </div>
-    <div class="player offense" style="left: 64.0%; bottom: 0%; height: 34.0%; z-index: 5;"><!-- RG (placeholder name - rename freely) -->
+    <div class="player offense" style="left: 64.0%; bottom: 0%; height: 34.0%;"><!-- RG (placeholder name - rename freely) -->
       <span class="npc-name">Stenvar</span>
       <img src="./assets/npcs/offensive-line/Skins defense 4 - eagle tattoo back (Whiterun).png" alt="Stenvar" />
     </div>
-    <div class="player offense" style="left: 78.0%; bottom: 0%; height: 30.0%; z-index: 5;"><!-- RT (placeholder name - rename freely) -->
+    <div class="player offense" style="left: 78.0%; bottom: 0%; height: 30.0%;"><!-- RT (placeholder name - rename freely) -->
       <span class="npc-name">Oddmir</span>
       <img src="./assets/npcs/offensive-line/Skins defense 5 - chained sigil tattoo back.png" alt="Oddmir" />
     </div>
@@ -156,21 +162,34 @@
   window.addEventListener('resize', layoutField);
   layoutField();
 
-  // presentation layer cycle: 0 = everything (initial load), 1 = base screenshot
-  // only, 2 = + offensive line, then back to 0. Advance with click or any key.
-  let layerState = 0;
-  document.body.dataset.layer = layerState;
-  function advanceLayer() {
-    layerState = (layerState + 1) % 3;
-    document.body.dataset.layer = layerState;
+  // Presentation sequence. Each entry lists the layers visible at that step,
+  // as CSS classes toggled on .stage (see the show-* rules in the <style>).
+  // A click or any key advances to the next entry, wrapping around.
+  // To change the sequence, just reorder/add/remove entries here.
+  const steps = [
+    ['show-offense', 'show-defense', 'show-attribution'], // everything (initial load)
+    [],                                                   // base screenshot only
+    ['show-defense', 'show-attribution'],                 // + defensive line
+  ];
+  let stepIndex = 0;
+  const stage = document.querySelector('.stage');
+  function applyStep() {
+    stage.className = 'stage';
+    stage.classList.add(...steps[stepIndex]);
   }
-  window.addEventListener('mousedown', advanceLayer);
-  window.addEventListener('keydown', advanceLayer);
+  function advanceStep() {
+    stepIndex = (stepIndex + 1) % steps.length;
+    applyStep();
+  }
+  applyStep();
+  window.addEventListener('mousedown', advanceStep);
+  window.addEventListener('keydown', advanceStep);
 </script>
 
 <!--
   Spare defense renders (transparent .webp, in ./assets/npcs/defensive-line-uesp/) - swap into any <img> src to taste.
   Flags in parentheses: armor / weapons / child / pose notes.
+  (Delphine and Mikael above are also available - they're just commented out of the lineup.)
 
   Acolyte Jenssen: ./assets/npcs/defensive-line-uesp/AcolyteJenssen_NrSR.webp
   Adrianne Avenicci: ./assets/npcs/defensive-line-uesp/AdrianneAvenicci_NrSR.webp
