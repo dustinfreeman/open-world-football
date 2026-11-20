@@ -25,108 +25,173 @@
     object-fit: cover;
     object-position: center;
   }
+  /* one .player div per NPC: tune left / bottom / height / z-index here */
   .player {
     position: absolute;
     transform: translateX(-50%);
+  }
+  .player img {
+    height: 100%;
+    display: block;
     filter: drop-shadow(0 6px 6px rgba(0, 0, 0, 0.45));
   }
+  /* Skyrim-style floating name label (Futura Condensed is the Skyrim UI font) */
+  .npc-name {
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    margin-bottom: 0.8vh;
+    white-space: nowrap;
+    font-family: "Futura Condensed", Futura, "Century Gothic", "Arial Narrow", sans-serif;
+    font-stretch: condensed;
+    font-size: 2.6vh;
+    letter-spacing: 0.05em;
+    color: #fff;
+    text-shadow: 0 0 4px rgba(0,0,0,0.9), 1px 1px 2px #000, -1px -1px 2px #000;
+  }
+  .attribution {
+    position: absolute;
+    right: 1vw;
+    bottom: 1vh;
+    z-index: 10;
+    font-family: Futura, "Century Gothic", sans-serif;
+    font-size: 1.5vh;
+    color: rgba(255, 255, 255, 0.55);
+    text-shadow: 1px 1px 2px #000;
+  }
+  .attribution a { color: rgba(255, 255, 255, 0.75); }
 </style>
 </head>
 <body>
 <div class="stage">
   <img class="bg" src="./assets/screenshots-riverwood-to-whiterun/20261119181917_1.jpg" alt="Riverwood to Whiterun" />
-    <img class="player" src="https://static.wikia.nocookie.net/skyrim_gamepedia/images/1/1d/Alvor.png/revision/latest?cb=20120210210312" alt="Alvor" style="left: 18%; bottom: 26%; height: 38%; z-index: 2;" />
-    <img class="player" src="https://static.wikia.nocookie.net/skyrim_gamepedia/images/d/dd/Sven.png/revision/latest?cb=20120212140451" alt="Sven" style="left: 29%; bottom: 27%; height: 39%; z-index: 2;" />
-    <img class="player" src="https://static.wikia.nocookie.net/skyrim_gamepedia/images/2/27/Sigurd.png/revision/latest?cb=20120620181448" alt="Sigurd" style="left: 40%; bottom: 28%; height: 40%; z-index: 2;" />
-    <img class="player" src="https://static.wikia.nocookie.net/skyrim_gamepedia/images/9/97/Jervar.png/revision/latest?cb=20120615164744" alt="Jervar" style="left: 51%; bottom: 27%; height: 40%; z-index: 2;" />
-    <img class="player" src="https://static.wikia.nocookie.net/skyrim_gamepedia/images/4/41/Belethor.png/revision/latest?cb=20120320125407" alt="Belethor" style="left: 62%; bottom: 27%; height: 39%; z-index: 2;" />
-    <img class="player" src="https://static.wikia.nocookie.net/skyrim_gamepedia/images/5/5b/ScoutsManyMarshes.png/revision/latest?cb=20120211141223" alt="Scouts-Many-Marshes" style="left: 73%; bottom: 26%; height: 39%; z-index: 2;" />
-    <img class="player" src="https://static.wikia.nocookie.net/skyrim_gamepedia/images/1/1c/Nazeem.png/revision/latest?cb=20120617124440" alt="Nazeem" style="left: 87%; bottom: 28%; height: 37%; z-index: 2;" />
-    <img class="player" src="https://static.wikia.nocookie.net/skyrim_gamepedia/images/d/de/Delphine.png/revision/latest?cb=20120209182038" alt="Delphine" style="left: 27%; bottom: 7%; height: 52%; z-index: 3;" />
-    <img class="player" src="https://static.wikia.nocookie.net/skyrim_gamepedia/images/7/7f/Mikael.png/revision/latest?cb=20120227161339" alt="Mikael" style="left: 44%; bottom: 10%; height: 50%; z-index: 3;" />
-    <img class="player" src="https://static.wikia.nocookie.net/skyrim_gamepedia/images/9/91/SuvarisAtheron.png/revision/latest?cb=20120209185650" alt="Suvaris Atheron" style="left: 63%; bottom: 9%; height: 50%; z-index: 3;" />
-    <img class="player" src="https://static.wikia.nocookie.net/skyrim_gamepedia/images/2/25/Niranye.png/revision/latest?cb=20120412181453" alt="Niranye" style="left: 84%; bottom: 8%; height: 51%; z-index: 3;" />
+  <div class="player" style="left: 18%; bottom: 26%; height: 38%; z-index: 2;">
+    <span class="npc-name">Alvor</span>
+    <img src="./assets/npcs/offensive-line-uesp/Alvor_NrSR.webp" alt="Alvor" />
+  </div>
+  <div class="player" style="left: 29%; bottom: 27%; height: 39%; z-index: 2;">
+    <span class="npc-name">Sven</span>
+    <img src="./assets/npcs/offensive-line-uesp/Sven_NrSR.webp" alt="Sven" />
+  </div>
+  <div class="player" style="left: 40%; bottom: 28%; height: 40%; z-index: 2;">
+    <span class="npc-name">Sigurd</span>
+    <img src="./assets/npcs/offensive-line-uesp/Sigurd_NrSR.webp" alt="Sigurd" />
+  </div>
+  <div class="player" style="left: 51%; bottom: 27%; height: 40%; z-index: 2;">
+    <span class="npc-name">Jervar</span>
+    <img src="./assets/npcs/offensive-line-uesp/Jervar_NrSR.webp" alt="Jervar" />
+  </div>
+  <div class="player" style="left: 62%; bottom: 27%; height: 39%; z-index: 2;">
+    <span class="npc-name">Belethor</span>
+    <img src="./assets/npcs/offensive-line-uesp/Belethor_NrSR.webp" alt="Belethor" />
+  </div>
+  <div class="player" style="left: 73%; bottom: 26%; height: 39%; z-index: 2;">
+    <span class="npc-name">Scouts-Many-Marshes</span>
+    <img src="./assets/npcs/offensive-line-uesp/ScoutsManyMarshes_NrSR.webp" alt="Scouts-Many-Marshes" />
+  </div>
+  <div class="player" style="left: 87%; bottom: 28%; height: 37%; z-index: 2;">
+    <span class="npc-name">Nazeem</span>
+    <img src="./assets/npcs/offensive-line-uesp/Nazeem_NrSR.webp" alt="Nazeem" />
+  </div>
+  <div class="player" style="left: 27%; bottom: 7%; height: 52%; z-index: 3;">
+    <span class="npc-name">Delphine</span>
+    <img src="./assets/npcs/offensive-line-uesp/Delphine_NrSR.webp" alt="Delphine" />
+  </div>
+  <div class="player" style="left: 44%; bottom: 10%; height: 50%; z-index: 3;">
+    <span class="npc-name">Mikael</span>
+    <img src="./assets/npcs/offensive-line-uesp/Mikael_NrSR.webp" alt="Mikael" />
+  </div>
+  <div class="player" style="left: 63%; bottom: 9%; height: 50%; z-index: 3;">
+    <span class="npc-name">Suvaris Atheron</span>
+    <img src="./assets/npcs/offensive-line-uesp/SuvarisAtheron_NrSR.webp" alt="Suvaris Atheron" />
+  </div>
+  <div class="player" style="left: 84%; bottom: 8%; height: 51%; z-index: 3;">
+    <span class="npc-name">Niranye</span>
+    <img src="./assets/npcs/offensive-line-uesp/Niranye_NrSR.webp" alt="Niranye" />
+  </div>
+  <div class="attribution">NPC images from <a href="https://uesp.net">UESP</a> &middot; The Elder Scrolls V: Skyrim &copy; Bethesda Softworks</div>
 </div>
 
 <!--
-  Spare NPC renders (transparent PNGs, Fandom wiki CDN) - swap into any <img class="player"> src to taste.
+  Spare NPC renders (transparent .webp, in ./assets/npcs/offensive-line-uesp/) - swap into any <img> src to taste.
   Flags in parentheses: armor / weapons / child / pose notes.
 
-  Acolyte Jenssen: https://static.wikia.nocookie.net/skyrim_gamepedia/images/a/af/AcolyteJenssen.png/revision/latest\?cb\=20120613153700
-  Adrianne Avenicci: https://static.wikia.nocookie.net/skyrim_gamepedia/images/a/a0/AdrianneAvenicci.png/revision/latest\?cb\=20120323194136
-  Ahlam: https://static.wikia.nocookie.net/skyrim_gamepedia/images/8/80/Ahlam.png/revision/latest\?cb\=20120617124425
-  Amren (light armor): https://static.wikia.nocookie.net/skyrim_gamepedia/images/a/a0/Amren.png/revision/latest\?cb\=20120212141912
-  Andurs: https://static.wikia.nocookie.net/skyrim_gamepedia/images/a/a3/Andurs.png/revision/latest\?cb\=20120531145942
-  Anoriath (Bosmer, dagger): https://static.wikia.nocookie.net/skyrim_gamepedia/images/a/ad/Anoriath.png/revision/latest\?cb\=20120209220655
-  Arcadia: https://static.wikia.nocookie.net/skyrim_gamepedia/images/9/90/Arcadia.png/revision/latest\?cb\=20120210194036
-  Avulstein Gray-Mane (armor): https://static.wikia.nocookie.net/skyrim_gamepedia/images/b/bb/AvulsteinGray-Mane.png/revision/latest\?cb\=20120211163342
-  Balgruuf the Greater (sheathed sword): https://static.wikia.nocookie.net/skyrim_gamepedia/images/5/54/BalgruuftheGreater.png/revision/latest\?cb\=20120227160418
-  Bergritte Battle-Born: https://static.wikia.nocookie.net/skyrim_gamepedia/images/f/f6/BergritteBattle-Born.png/revision/latest\?cb\=20120323130249
-  Bjorlam (dagger): https://static.wikia.nocookie.net/skyrim_gamepedia/images/a/a7/Bjorlam.png/revision/latest\?cb\=20120616192203
-  Braith (child): https://static.wikia.nocookie.net/skyrim_gamepedia/images/6/69/Braith.png/revision/latest\?cb\=20120610180354
-  Brenuin: https://static.wikia.nocookie.net/skyrim_gamepedia/images/c/c6/Brenuin.png/revision/latest\?cb\=20120323133214
-  Brill: https://static.wikia.nocookie.net/skyrim_gamepedia/images/6/65/Brill.png/revision/latest\?cb\=20120227170429
-  Carlotta Valentia: https://static.wikia.nocookie.net/skyrim_gamepedia/images/4/4e/CarlottaValentia.png/revision/latest\?cb\=20120327185016
-  Dagny (child): https://static.wikia.nocookie.net/skyrim_gamepedia/images/e/e0/Dagny.png/revision/latest\?cb\=20120616165219
-  Danica Pure-Spring: https://static.wikia.nocookie.net/skyrim_gamepedia/images/4/43/Danica_Pure-Spring.png/revision/latest\?cb\=20120203201915
-  Elrindir (Bosmer, dagger): https://static.wikia.nocookie.net/skyrim_gamepedia/images/7/7c/Elrindir.png/revision/latest\?cb\=20120209221203
-  Eorlund Gray-Mane (bare chest, apron): https://static.wikia.nocookie.net/skyrim_gamepedia/images/3/39/EorlundGray-Mane.png/revision/latest\?cb\=20120210164207
-  Farengar Secret-Fire: https://static.wikia.nocookie.net/skyrim_gamepedia/images/9/96/Farengar.png/revision/latest\?cb\=20120203014306
-  Farkas (armor + sword): https://static.wikia.nocookie.net/skyrim_gamepedia/images/4/4d/Farkas.png/revision/latest\?cb\=20120615141546
-  Fianna: https://static.wikia.nocookie.net/skyrim_gamepedia/images/7/72/Fianna.png/revision/latest\?cb\=20120210205549
-  Fralia Gray-Mane: https://static.wikia.nocookie.net/skyrim_gamepedia/images/9/93/FraliaGray-Mane.png/revision/latest\?cb\=20120331160555
-  Frothar (child): https://static.wikia.nocookie.net/skyrim_gamepedia/images/e/ef/Frothar.png/revision/latest\?cb\=20120616170830
-  Gerda: https://static.wikia.nocookie.net/skyrim_gamepedia/images/c/c6/Gerda.png/revision/latest\?cb\=20120618165529
-  Heimskr: https://static.wikia.nocookie.net/skyrim_gamepedia/images/b/b8/Heimskr.png/revision/latest\?cb\=20120227173337
-  Hrongar (armor + swords): https://static.wikia.nocookie.net/skyrim_gamepedia/images/3/38/Hrongar.png/revision/latest\?cb\=20120620173952
-  Hulda: https://static.wikia.nocookie.net/skyrim_gamepedia/images/f/f8/Hulda.png/revision/latest\?cb\=20120210202707
-  Idolaf Battle-Born (armored tunic): https://static.wikia.nocookie.net/skyrim_gamepedia/images/4/4f/IdolafBattle-Born.png/revision/latest\?cb\=20120323130310
-  Irileth (Dunmer, armor + sword): https://static.wikia.nocookie.net/skyrim_gamepedia/images/4/41/Irileth.png/revision/latest\?cb\=20120209192019
-  Jenassa (Dunmer, armor): https://static.wikia.nocookie.net/skyrim_gamepedia/images/d/d0/Jenassa.png/revision/latest\?cb\=20120209195527
-  Jon Battle-Born (partial armor): https://static.wikia.nocookie.net/skyrim_gamepedia/images/6/61/JonBattle-Born.png/revision/latest\?cb\=20120210171610
-  Lars Battle-Born (child): https://static.wikia.nocookie.net/skyrim_gamepedia/images/8/81/LarsBattle-Born.png/revision/latest\?cb\=20120323130331
-  Legate Quentin Cipius (full armor): https://static.wikia.nocookie.net/skyrim_gamepedia/images/a/a1/LegateQuentinCipius.png/revision/latest\?cb\=20120601194321
-  Lillith Maiden-Loom: https://static.wikia.nocookie.net/skyrim_gamepedia/images/b/b7/LillithMaiden-Loom.png/revision/latest\?cb\=20120614154949
-  Lucia (child): https://static.wikia.nocookie.net/skyrim_gamepedia/images/3/34/Lucia.png/revision/latest\?cb\=20121108205907
-  Lydia (armor + shield): https://static.wikia.nocookie.net/skyrim_gamepedia/images/d/dc/Lydia.png/revision/latest\?cb\=20120215122343
-  Mallus Maccius: https://static.wikia.nocookie.net/skyrim_gamepedia/images/0/06/MallusMaccius.png/revision/latest\?cb\=20120614184705
-  Maurice Jondrelle: https://static.wikia.nocookie.net/skyrim_gamepedia/images/2/24/MauriceJondrelle.png/revision/latest\?cb\=20120209160656
-  Mila Valentia (child): https://static.wikia.nocookie.net/skyrim_gamepedia/images/5/5f/MilaValentia.png/revision/latest\?cb\=20120327185247
-  Nelkir (child): https://static.wikia.nocookie.net/skyrim_gamepedia/images/1/16/Nelkir.png/revision/latest\?cb\=20120616170912
-  Njada Stonearm (armor): https://static.wikia.nocookie.net/skyrim_gamepedia/images/7/74/NjadaStonearm.png/revision/latest\?cb\=20120211181130
-  Olava the Feeble: https://static.wikia.nocookie.net/skyrim_gamepedia/images/9/93/OlavatheFeeble.png/revision/latest\?cb\=20120201175402
-  Olfina Gray-Mane: https://static.wikia.nocookie.net/skyrim_gamepedia/images/5/53/OlfinaGray-Mane.png/revision/latest\?cb\=20120331160940
-  Olfrid Battle-Born (dagger): https://static.wikia.nocookie.net/skyrim_gamepedia/images/6/6c/OlfridBattle-Born.png/revision/latest\?cb\=20120323130401
-  Proventus Avenicci: https://static.wikia.nocookie.net/skyrim_gamepedia/images/1/1a/ProventusAvenicci.png/revision/latest\?cb\=20120307155309
-  Ria (armor): https://static.wikia.nocookie.net/skyrim_gamepedia/images/8/81/Ria.png/revision/latest\?cb\=20120212132420
-  Saadia (Redguard): https://static.wikia.nocookie.net/skyrim_gamepedia/images/5/50/Saadia.png/revision/latest\?cb\=20120327211410
-  Saffir: https://static.wikia.nocookie.net/skyrim_gamepedia/images/c/cb/Saffir.png/revision/latest\?cb\=20120610180534
-  Severio Pelagia: https://static.wikia.nocookie.net/skyrim_gamepedia/images/c/c7/SeverioPelagia.png/revision/latest\?cb\=20120601121022
-  Sinmir (armored tunic): https://static.wikia.nocookie.net/skyrim_gamepedia/images/6/6e/Sinmir.png/revision/latest\?cb\=20121211153715
-  Skulvar Sable-Hilt (dagger): https://static.wikia.nocookie.net/skyrim_gamepedia/images/d/df/SkulvarSable-Hilt.png/revision/latest\?cb\=20120418192743
-  Tilma the Haggard (dagger): https://static.wikia.nocookie.net/skyrim_gamepedia/images/1/15/TilmatheHaggard.png/revision/latest\?cb\=20120209205916
-  Torvar (armor): https://static.wikia.nocookie.net/skyrim_gamepedia/images/b/b7/Torvar.png/revision/latest\?cb\=20120211182151
-  Ulfberth War-Bear (armor): https://static.wikia.nocookie.net/skyrim_gamepedia/images/1/1c/UlfberthWar-Bear.png/revision/latest\?cb\=20120323194225
-  Uthgerd the Unbroken (armor + greatsword): https://static.wikia.nocookie.net/skyrim_gamepedia/images/8/8f/Uthgerd.png/revision/latest\?cb\=20120210175206
-  Vignar Gray-Mane (seated): https://static.wikia.nocookie.net/skyrim_gamepedia/images/4/4a/VignarGrey-Mane.png/revision/latest\?cb\=20120108004221
-  Vilkas (armor): https://static.wikia.nocookie.net/skyrim_gamepedia/images/2/29/Vilkas.png/revision/latest\?cb\=20120210170047
-  Ysolda: https://static.wikia.nocookie.net/skyrim_gamepedia/images/6/67/Ysolda.png/revision/latest\?cb\=20120210175543
-  Camilla Valerius: https://static.wikia.nocookie.net/skyrim_gamepedia/images/e/e5/CamillaValerius.png/revision/latest\?cb\=20120210180006
-  Dorthe (child): https://static.wikia.nocookie.net/skyrim_gamepedia/images/4/41/Dorthe.png/revision/latest\?cb\=20120210210036
-  Embry (dagger): https://static.wikia.nocookie.net/skyrim_gamepedia/images/6/6d/Embry.png/revision/latest\?cb\=20120227155348
-  Faendal (Bosmer, bow): https://static.wikia.nocookie.net/skyrim_gamepedia/images/8/8c/Faendal.png/revision/latest\?cb\=20120209214413
-  Frodnar: https://static.wikia.nocookie.net/skyrim_gamepedia/images/b/b0/Frodnar.png/revision/latest\?cb\=20120614180916
-  Gerdur: https://static.wikia.nocookie.net/skyrim_gamepedia/images/f/f0/Gerdur.png/revision/latest\?cb\=20120227172003
-  Hadvar (armor): https://static.wikia.nocookie.net/skyrim_gamepedia/images/f/f1/Hadvar.png/revision/latest\?cb\=20120323134509
-  Hilde: https://static.wikia.nocookie.net/skyrim_gamepedia/images/b/b1/Hilde.png/revision/latest\?cb\=20120322193644
-  Hod (dagger): https://static.wikia.nocookie.net/skyrim_gamepedia/images/e/e5/Hod.png/revision/latest\?cb\=20120227153927
-  Lucan Valerius (dagger): https://static.wikia.nocookie.net/skyrim_gamepedia/images/b/bd/LucanValerius.png/revision/latest\?cb\=20120211143816
-  Orgnar (dagger): https://static.wikia.nocookie.net/skyrim_gamepedia/images/7/7c/Orgnar.png/revision/latest\?cb\=20120614154927
-  Ralof (armor): https://static.wikia.nocookie.net/skyrim_gamepedia/images/6/62/Ralof.png/revision/latest\?cb\=20120226181259
-  Sigrid: https://static.wikia.nocookie.net/skyrim_gamepedia/images/7/73/Sigrid.png/revision/latest\?cb\=20120508132259
-  Ri'saad (Khajiit, sheathed sword): https://static.wikia.nocookie.net/skyrim_gamepedia/images/b/b2/Risaad.png/revision/latest?cb=20120211140644
-  Ahkari (Khajiit, dagger): https://static.wikia.nocookie.net/skyrim_gamepedia/images/d/d8/Ahkari.png/revision/latest?cb=20120211140437
-  Malborn (Bosmer): https://static.wikia.nocookie.net/skyrim_gamepedia/images/0/0d/Malborn.png/revision/latest?cb=20120209213011
+  Acolyte Jenssen: ./assets/npcs/offensive-line-uesp/AcolyteJenssen_NrSR.webp
+  Adrianne Avenicci: ./assets/npcs/offensive-line-uesp/AdrianneAvenicci_NrSR.webp
+  Ahkari (Khajiit, dagger): ./assets/npcs/offensive-line-uesp/Ahkari_NrSR.webp
+  Ahlam: ./assets/npcs/offensive-line-uesp/Ahlam_NrSR.webp
+  Amren (light armor): ./assets/npcs/offensive-line-uesp/Amren_NrSR.webp
+  Andurs: ./assets/npcs/offensive-line-uesp/Andurs_NrSR.webp
+  Anoriath (Bosmer, dagger): ./assets/npcs/offensive-line-uesp/Anoriath_NrSR.webp
+  Arcadia: ./assets/npcs/offensive-line-uesp/Arcadia_NrSR.webp
+  Avulstein Gray-Mane (armor): ./assets/npcs/offensive-line-uesp/AvulsteinGray-Mane_NrSR.webp
+  Balgruuf the Greater (sheathed sword): ./assets/npcs/offensive-line-uesp/BalgruuftheGreater_NrSR.webp
+  Bergritte Battle-Born: ./assets/npcs/offensive-line-uesp/BergritteBattle-Born_NrSR.webp
+  Bjorlam (dagger): ./assets/npcs/offensive-line-uesp/Bjorlam_NrSR.webp
+  Braith (child): ./assets/npcs/offensive-line-uesp/Braith_NrSR.webp
+  Brenuin: ./assets/npcs/offensive-line-uesp/Brenuin_NrSR.webp
+  Brill: ./assets/npcs/offensive-line-uesp/Brill_NrSR.webp
+  Camilla Valerius: ./assets/npcs/offensive-line-uesp/CamillaValerius_NrSR.webp
+  Carlotta Valentia: ./assets/npcs/offensive-line-uesp/CarlottaValentia_NrSR.webp
+  Dagny (child): ./assets/npcs/offensive-line-uesp/Dagny_NrSR.webp
+  Danica Pure-Spring: ./assets/npcs/offensive-line-uesp/Danica_Pure-Spring_NrSR.webp
+  Dorthe (child): ./assets/npcs/offensive-line-uesp/Dorthe_NrSR.webp
+  Elrindir (Bosmer, dagger): ./assets/npcs/offensive-line-uesp/Elrindir_NrSR.webp
+  Embry (dagger): ./assets/npcs/offensive-line-uesp/Embry_NrSR.webp
+  Eorlund Gray-Mane (bare chest, apron): ./assets/npcs/offensive-line-uesp/EorlundGray-Mane_NrSR.webp
+  Faendal (Bosmer, bow): ./assets/npcs/offensive-line-uesp/Faendal_NrSR.webp
+  Farengar Secret-Fire: ./assets/npcs/offensive-line-uesp/Farengar_NrSR.webp
+  Farkas (armor + sword): ./assets/npcs/offensive-line-uesp/Farkas_NrSR.webp
+  Fianna: ./assets/npcs/offensive-line-uesp/Fianna_NrSR.webp
+  Fralia Gray-Mane: ./assets/npcs/offensive-line-uesp/FraliaGray-Mane_NrSR.webp
+  Frodnar: ./assets/npcs/offensive-line-uesp/Frodnar_NrSR.webp
+  Frothar (child): ./assets/npcs/offensive-line-uesp/Frothar_NrSR.webp
+  Gerda: ./assets/npcs/offensive-line-uesp/Gerda_NrSR.webp
+  Gerdur: ./assets/npcs/offensive-line-uesp/Gerdur_NrSR.webp
+  Hadvar (armor): ./assets/npcs/offensive-line-uesp/Hadvar_NrSR.webp
+  Heimskr: ./assets/npcs/offensive-line-uesp/Heimskr_NrSR.webp
+  Hilde: ./assets/npcs/offensive-line-uesp/Hilde_NrSR.webp
+  Hod (dagger): ./assets/npcs/offensive-line-uesp/Hod_NrSR.webp
+  Hrongar (armor + swords): ./assets/npcs/offensive-line-uesp/Hrongar_NrSR.webp
+  Hulda: ./assets/npcs/offensive-line-uesp/Hulda_NrSR.webp
+  Idolaf Battle-Born (armored tunic): ./assets/npcs/offensive-line-uesp/IdolafBattle-Born_NrSR.webp
+  Irileth (Dunmer, armor + sword): ./assets/npcs/offensive-line-uesp/Irileth_NrSR.webp
+  Jenassa (Dunmer, armor): ./assets/npcs/offensive-line-uesp/Jenassa_NrSR.webp
+  Jon Battle-Born (partial armor): ./assets/npcs/offensive-line-uesp/JonBattle-Born_NrSR.webp
+  Lars Battle-Born (child): ./assets/npcs/offensive-line-uesp/LarsBattle-Born_NrSR.webp
+  Legate Quentin Cipius (full armor): ./assets/npcs/offensive-line-uesp/LegateQuentinCipius_NrSR.webp
+  Lillith Maiden-Loom: ./assets/npcs/offensive-line-uesp/LillithMaiden-Loom_NrSR.webp
+  Lucan Valerius (dagger): ./assets/npcs/offensive-line-uesp/LucanValerius_NrSR.webp
+  Lucia (child): ./assets/npcs/offensive-line-uesp/Lucia_NrSR.webp
+  Lydia (armor + shield): ./assets/npcs/offensive-line-uesp/Lydia_NrSR.webp
+  Malborn (Bosmer): ./assets/npcs/offensive-line-uesp/Malborn_NrSR.webp
+  Mallus Maccius: ./assets/npcs/offensive-line-uesp/MallusMaccius_NrSR.webp
+  Maurice Jondrelle: ./assets/npcs/offensive-line-uesp/MauriceJondrelle_NrSR.webp
+  Mila Valentia (child): ./assets/npcs/offensive-line-uesp/MilaValentia_NrSR.webp
+  Nelkir (child): ./assets/npcs/offensive-line-uesp/Nelkir_NrSR.webp
+  Njada Stonearm (armor): ./assets/npcs/offensive-line-uesp/NjadaStonearm_NrSR.webp
+  Olava the Feeble: ./assets/npcs/offensive-line-uesp/OlavatheFeeble_NrSR.webp
+  Olfina Gray-Mane: ./assets/npcs/offensive-line-uesp/OlfinaGray-Mane_NrSR.webp
+  Olfrid Battle-Born (dagger): ./assets/npcs/offensive-line-uesp/OlfridBattle-Born_NrSR.webp
+  Orgnar (dagger): ./assets/npcs/offensive-line-uesp/Orgnar_NrSR.webp
+  Proventus Avenicci: ./assets/npcs/offensive-line-uesp/ProventusAvenicci_NrSR.webp
+  Ralof (armor): ./assets/npcs/offensive-line-uesp/Ralof_NrSR.webp
+  Ri'saad (Khajiit, sheathed sword): ./assets/npcs/offensive-line-uesp/Risaad_NrSR.webp
+  Ria (armor): ./assets/npcs/offensive-line-uesp/Ria_NrSR.webp
+  Saadia (Redguard): ./assets/npcs/offensive-line-uesp/Saadia_NrSR.webp
+  Saffir: ./assets/npcs/offensive-line-uesp/Saffir_NrSR.webp
+  Severio Pelagia: ./assets/npcs/offensive-line-uesp/SeverioPelagia_NrSR.webp
+  Sigrid: ./assets/npcs/offensive-line-uesp/Sigrid_NrSR.webp
+  Sinmir (armored tunic): ./assets/npcs/offensive-line-uesp/Sinmir_NrSR.webp
+  Skulvar Sable-Hilt (dagger): ./assets/npcs/offensive-line-uesp/SkulvarSable-Hilt_NrSR.webp
+  Tilma the Haggard (dagger): ./assets/npcs/offensive-line-uesp/TilmatheHaggard_NrSR.webp
+  Torvar (armor): ./assets/npcs/offensive-line-uesp/Torvar_NrSR.webp
+  Ulfberth War-Bear (armor): ./assets/npcs/offensive-line-uesp/UlfberthWar-Bear_NrSR.webp
+  Uthgerd the Unbroken (armor + greatsword): ./assets/npcs/offensive-line-uesp/Uthgerd_NrSR.webp
+  Vignar Gray-Mane (seated): ./assets/npcs/offensive-line-uesp/VignarGrey-Mane_NrSR.webp
+  Vilkas (armor): ./assets/npcs/offensive-line-uesp/Vilkas_NrSR.webp
+  Ysolda: ./assets/npcs/offensive-line-uesp/Ysolda_NrSR.webp
 -->
 </body>
 </html>
